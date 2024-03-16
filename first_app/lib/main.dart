@@ -6,7 +6,7 @@ void main(List<String> args) {
     const MaterialApp(
       home: Scaffold(
         backgroundColor: Color.fromARGB(255, 110, 207, 110),
-        body: GradientContainer(),
+        body: GradientContainer(colorsIn: [Colors.black, Colors.blue],),
       ),
     ),
   );
