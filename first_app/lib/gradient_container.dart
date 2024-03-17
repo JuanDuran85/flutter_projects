@@ -9,17 +9,39 @@ class GradientContainer extends StatelessWidget {
 
   final List<Color> colorsIn;
 
+  void rollDiceMethod() {}
+
   @override
   Widget build(context) {
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
-            colors: colorsIn,
-            begin: startAlignment,
-            end: endAlignment),
+            colors: colorsIn, begin: startAlignment, end: endAlignment),
       ),
-      child: const Center(
-        child: StyleText('__App One__'),
+      child: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Image.asset(
+              'assets/images/dice-1.png',
+              width: 200,
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            TextButton(
+              onPressed: rollDiceMethod,
+              style: TextButton.styleFrom(
+                padding: const EdgeInsets.only(
+                  top: 2,
+                ),
+                foregroundColor: Colors.white,
+                textStyle: const TextStyle(fontSize: 24),
+              ),
+              child: const Text('Roll Dice'),
+            ),
+          ],
+        ),
       ),
     );
   }
