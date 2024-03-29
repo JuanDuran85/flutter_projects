@@ -3,10 +3,7 @@ import 'package:yes_no_app/config/helpers/get_yes_no_answer.dart';
 import 'package:yes_no_app/domain/entities/message.dart';
 
 class ChatProvider extends ChangeNotifier {
-  List<Message> messageList = [
-    Message(text: 'Nuevo mensaje', fromWho: FromWho.me),
-    Message(text: 'Es un nuevo mensaje?', fromWho: FromWho.me),
-  ];
+  List<Message> messageList = [];
 
   final GetYesNoAnswer getYesNoAnswer = GetYesNoAnswer();
   final ScrollController chatScrollController = ScrollController();
