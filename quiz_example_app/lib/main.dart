@@ -1,0 +1,13 @@
+import 'package:flutter/material.dart';
+import 'package:quiz_example_app/quiz.dart';
+
+void main() => runApp(const QuizApp());
+
+class QuizApp extends StatelessWidget {
+  const QuizApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Quiz();
+  }
+}
