@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class QuestionsSummary extends StatelessWidget {
   final List<Map<String, Object>> summaryData;
@@ -7,26 +9,44 @@ class QuestionsSummary extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: summaryData
-          .map(
-            (dataIn) => Row(
-              children: [
-                Text(((dataIn['question_index'] as int) + 1).toString()),
-                Column(
+    return SizedBox(
+      height: 300,
+      child: SingleChildScrollView(
+        child: Column(
+          children: summaryData
+              .map(
+                (dataIn) => Row(
                   children: [
-                    Text(dataIn['question'] as String),
-                    const SizedBox(
-                      height: 5,
+                    DecoratedBox(
+                      decoration: BoxDecoration(
+                        color: Colors.red,
+                        border: Border.all(
+                          width: 48,
+                        ),
+                        borderRadius: BorderRadius.circular(29),
+                      ),
+                      child: Text(
+                        ((dataIn['question_index'] as int) + 1).toString(),
+                      ),
                     ),
-                    Text(dataIn['user_answer'] as String),
-                    Text(dataIn['correct_answer'] as String),
+                    Expanded(
+                      child: Column(
+                        children: [
+                          Text(dataIn['question'] as String),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Text(dataIn['user_answer'] as String),
+                          Text(dataIn['correct_answer'] as String),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
-              ],
-            ),
-          )
-          .toList(),
+              )
+              .toList(),
+        ),
+      ),
     );
   }
 }
