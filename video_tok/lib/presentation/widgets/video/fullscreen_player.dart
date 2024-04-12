@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
+import 'package:video_tok/presentation/widgets/video/video_background.dart';
 
 class FullScreenPlayer extends StatefulWidget {
   final String videoUrl;
@@ -49,7 +50,7 @@ class _FullScreenPlayerState extends State<FullScreenPlayer> {
 
           return GestureDetector(
             onTap: () {
-              if(controller.value.isPlaying){
+              if (controller.value.isPlaying) {
                 controller.pause();
                 return;
               }
@@ -61,7 +62,9 @@ class _FullScreenPlayerState extends State<FullScreenPlayer> {
                 children: [
                   VideoPlayer(controller),
                   //gradiente
-            
+                  VideoBackground(
+                    stops: const [0.8, 1.0],
+                  ),
                   // text
                   Positioned(
                     bottom: 50,
