@@ -44,6 +44,8 @@ class AppTheme {
         );
 
   ThemeData getTheme() => ThemeData(
-        colorSchemeSeed: colorList[selectedColor],
-      );
+      colorSchemeSeed: colorList[selectedColor],
+      appBarTheme: const AppBarTheme(
+        centerTitle: false,
+      ));
 }
