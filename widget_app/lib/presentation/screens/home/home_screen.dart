@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
 import 'package:go_router/go_router.dart';
 import 'package:widget_app/config/menu/manu_items.dart';
-import 'package:widget_app/presentation/screens/cards/cards_screen.dart';
 
 class HomeScreen extends StatelessWidget {
 
