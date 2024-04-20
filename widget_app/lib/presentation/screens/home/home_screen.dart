@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+// ignore: depend_on_referenced_packages
+import 'package:go_router/go_router.dart';
 import 'package:widget_app/config/menu/manu_items.dart';
-import 'package:widget_app/presentation/screens/buttons/buttons_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -52,11 +53,7 @@ class _CustomListTile extends StatelessWidget {
       title: Text(colorIndex.title),
       subtitle: Text(colorIndex.subtitle),
       onTap: () {
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => const ButtonsScreen(),
-          ),
-        );
+        context.push(colorIndex.link);
       },
     );
   }
