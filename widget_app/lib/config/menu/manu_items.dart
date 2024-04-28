@@ -29,8 +29,14 @@ const appMenuItems = <MenuItem>[
   ),
     MenuItem(
     title: 'ProgressIndicators',
-    subtitle: 'Generales t controlados',
+    subtitle: 'Generales y controlados',
     link: '/progress',
     icon: Icons.refresh_rounded,
+  ),
+      MenuItem(
+    title: 'Snackbars',
+    subtitle: 'Snackbars en Flutter',
+    link: '/snackbars',
+    icon: Icons.info_outline,
   ),
 ];
