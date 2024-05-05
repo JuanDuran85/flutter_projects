@@ -27,13 +27,13 @@ const appMenuItems = <MenuItem>[
     link: '/cards',
     icon: Icons.credit_card,
   ),
-    MenuItem(
+  MenuItem(
     title: 'ProgressIndicators',
     subtitle: 'Generales y controlados',
     link: '/progress',
     icon: Icons.refresh_rounded,
   ),
-      MenuItem(
+  MenuItem(
     title: 'Snackbars',
     subtitle: 'Snackbars en Flutter',
     link: '/snackbars',
@@ -45,10 +45,16 @@ const appMenuItems = <MenuItem>[
     link: '/animated',
     icon: Icons.check_box_outlined,
   ),
-    MenuItem(
+  MenuItem(
     title: 'UI Controls',
     subtitle: 'Controls on Flutter',
     link: '/ui-controls',
     icon: Icons.car_rental_outlined,
+  ),
+  MenuItem(
+    title: 'Tutorials Introduction',
+    subtitle: 'Mini tutorials app',
+    link: '/tutorial',
+    icon: Icons.accessibility_new_rounded,
   ),
 ];
