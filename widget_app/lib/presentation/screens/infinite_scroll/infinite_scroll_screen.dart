@@ -79,11 +79,15 @@ class _InfiniteScrollScreenState extends State<InfiniteScrollScreen> {
       floatingActionButton: FloatingActionButton(
         onPressed: () => context.pop(),
         child: isLoading
-            ? SpinPerfect(
-                infinite: true,
-                child: const Icon(Icons.refresh_rounded),
-              )
-            : const Icon(Icons.arrow_back_rounded),
+            ? FadeInRight(
+              child: SpinPerfect(
+                  infinite: true,
+                  child: const Icon(Icons.refresh_rounded),
+                ),
+            )
+            : FadeIn(
+                child: const Icon(Icons.arrow_back_rounded),
+              ),
       ),
     );
   }
