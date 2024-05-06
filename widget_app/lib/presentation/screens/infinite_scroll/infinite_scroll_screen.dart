@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
 import 'package:go_router/go_router.dart';
+// ignore: depend_on_referenced_packages
+import 'package:animate_do/animate_do.dart';
 
 class InfiniteScrollScreen extends StatefulWidget {
   static const name = 'infinite_screen';
@@ -76,7 +78,12 @@ class _InfiniteScrollScreenState extends State<InfiniteScrollScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => context.pop(),
-        child: const Icon(Icons.arrow_back_outlined),
+        child: isLoading
+            ? SpinPerfect(
+                infinite: true,
+                child: const Icon(Icons.refresh_rounded),
+              )
+            : const Icon(Icons.arrow_back_rounded),
       ),
     );
   }
