@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+// libreria para ayudar a implementar la orientacion del dispositivo
+import 'package:flutter/services.dart';
 import 'package:expense_tracker/widgets/expense_tracker.dart';
 
 var kColorScheme =
@@ -10,7 +11,15 @@ var kDarkColorScheme = ColorScheme.fromSeed(
   seedColor: const Color.fromARGB(255, 5, 99, 125),
 );
 
-void main() => runApp(const MyApp());
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations(
+    [DeviceOrientation.portraitUp],
+  ).then((value) => runApp(
+    const MyApp(),
+  ));
+  
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
