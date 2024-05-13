@@ -47,6 +47,7 @@ class _InfiniteScrollScreenState extends State<InfiniteScrollScreen> {
     isLoading = false;
     if (!isMounted) return;
     setState(() {});
+    moveScreollToBottom();
   }
 
   void addFiveImages() {
@@ -60,7 +61,7 @@ class _InfiniteScrollScreenState extends State<InfiniteScrollScreen> {
 
     await Future.delayed(const Duration(seconds: 2));
     if (!isMounted) return;
-    
+
     isLoading = false;
     final lastId = imagesIds.last;
     imagesIds.clear();
@@ -68,6 +69,17 @@ class _InfiniteScrollScreenState extends State<InfiniteScrollScreen> {
     addFiveImages();
 
     setState(() {});
+  }
+
+  void moveScreollToBottom() {
+    if (scrollController.position.pixels + 100 <=
+        scrollController.position.maxScrollExtent) return;
+
+    scrollController.animateTo(
+      scrollController.position.pixels + 150,
+      duration: const Duration(milliseconds: 460),
+      curve: Curves.fastEaseInToSlowEaseOut,
+    );
   }
 
   @override
@@ -90,7 +102,8 @@ class _InfiniteScrollScreenState extends State<InfiniteScrollScreen> {
                   fit: BoxFit.cover,
                   width: double.infinity,
                   height: 300,
-                  placeholder: const AssetImage('assets/images/jar-loading.gif'),
+                  placeholder:
+                      const AssetImage('assets/images/jar-loading.gif'),
                   image: NetworkImage(
                       'https://picsum.photos/id/${imagesIds[index]}/500/300'),
                 );
@@ -101,11 +114,11 @@ class _InfiniteScrollScreenState extends State<InfiniteScrollScreen> {
         onPressed: () => context.pop(),
         child: isLoading
             ? FadeInRight(
-              child: SpinPerfect(
+                child: SpinPerfect(
                   infinite: true,
                   child: const Icon(Icons.refresh_rounded),
                 ),
-            )
+              )
             : FadeIn(
                 child: const Icon(Icons.arrow_back_rounded),
               ),
