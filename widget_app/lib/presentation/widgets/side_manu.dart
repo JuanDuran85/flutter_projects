@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
+// ignore: depend_on_referenced_packages
+import 'package:go_router/go_router.dart';
 import 'package:widget_app/config/menu/manu_items.dart';
 
 class SideManu extends StatefulWidget {
-  const SideManu({super.key});
+
+  final GlobalKey<ScaffoldState> scaffoldKey;
+
+  const SideManu({super.key, required this.scaffoldKey});
 
   @override
   State<SideManu> createState() => _SideManuState();
@@ -21,6 +25,10 @@ class _SideManuState extends State<SideManu> {
         setState(() {
           navDrawerIndex = value;
         });
+
+        final menuItemSelected = appMenuItems[value];
+        context.push(menuItemSelected.link);
+        widget.scaffoldKey.currentState?.closeDrawer();
       },
       children: [
         Padding(
