@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
 import 'package:go_router/go_router.dart';
 import 'package:widget_app/config/menu/manu_items.dart';
+import 'package:widget_app/presentation/widgets/side_manu.dart';
 
 class HomeScreen extends StatelessWidget {
 
@@ -16,6 +17,7 @@ class HomeScreen extends StatelessWidget {
         title: const Text('Flutter App + Material'),
       ),
       body: const _HomeView(),
+      drawer: const SideManu(),
     );
   }
 }
