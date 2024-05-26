@@ -41,7 +41,8 @@ class _AnimatedScreenState extends State<AnimatedScreen> {
           height: height <= 0 ? 0 : height,
           decoration: BoxDecoration(
             color: color,
-            borderRadius: BorderRadius.circular(borderRadius <= 0 ? 0 : borderRadius),
+            borderRadius:
+                BorderRadius.circular(borderRadius <= 0 ? 0 : borderRadius),
           ),
         ),
       ),

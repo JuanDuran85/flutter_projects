@@ -103,10 +103,9 @@ class _ButtonsView extends StatelessWidget {
 class CustomButton extends StatelessWidget {
   const CustomButton({super.key});
 
-
   @override
   Widget build(BuildContext context) {
-  final themeOfColors = Theme.of(context).colorScheme;
+    final themeOfColors = Theme.of(context).colorScheme;
     return ClipRRect(
       borderRadius: BorderRadius.circular(20),
       child: Material(
@@ -115,7 +114,10 @@ class CustomButton extends StatelessWidget {
           onTap: () {},
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            child: Text('Custom Button', style: TextStyle(color: Colors.white),),
+            child: Text(
+              'Custom Button',
+              style: TextStyle(color: Colors.white),
+            ),
           ),
         ),
       ),
