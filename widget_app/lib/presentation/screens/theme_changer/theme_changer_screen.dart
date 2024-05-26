@@ -19,7 +19,9 @@ class ThemeChangerScreen extends ConsumerWidget {
             icon: Icon(isDarkMode
                 ? Icons.dark_mode_outlined
                 : Icons.light_mode_outlined),
-            onPressed: () {},
+            onPressed: () {
+              ref.read(isDarkModeProvider.notifier).state = !isDarkMode;
+            },
           )
         ],
       ),
@@ -45,7 +47,7 @@ class _ThemeChangerView extends ConsumerWidget {
           value: index,
           groupValue: selectedColor,
           onChanged: (value) {
-            ref.read(selectedIndexColorProvider.notifier).update((state) => value as int);
+            ref.read(selectedIndexColorProvider.notifier).state = index;
           },
           activeColor: color,
           title: Text(
