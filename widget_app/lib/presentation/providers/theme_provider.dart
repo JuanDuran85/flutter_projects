@@ -12,3 +12,19 @@ final Provider<List<Color>> colorListProvider =
 
 final StateProvider<int> selectedIndexColorProvider =
     StateProvider<int>((ref) => 0);
+
+final themeNotifierProvider =
+    StateNotifierProvider<ThemeControllerNotifier, AppTheme>(
+        (ref) => ThemeControllerNotifier());
+
+// controller or notifier
+class ThemeControllerNotifier extends StateNotifier<AppTheme> {
+  ThemeControllerNotifier()
+      : super(
+          AppTheme(),
+        );
+
+  void toggleDarkMode() {
+    state = state.copyWith(isDarkMode: !state.isDarkMode);
+  }
+}
