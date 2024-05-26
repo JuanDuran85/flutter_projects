@@ -11,7 +11,6 @@ class CounterScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
     final int clickCounter = ref.watch<int>(counterProvider);
     final bool darkModeActive = ref.watch<bool>(isDarkModeProvider);
     return Scaffold(
@@ -19,10 +18,14 @@ class CounterScreen extends ConsumerWidget {
         title: const Text('Counter Screen'),
         actions: [
           IconButton(
-            icon: Icon(darkModeActive ? Icons.dark_mode_outlined : Icons.light_mode_outlined),
+            icon: Icon(darkModeActive
+                ? Icons.dark_mode_outlined
+                : Icons.light_mode_outlined),
             onPressed: () {
               //ref.read(isDarkModeProvider.notifier).state = !darkModeActive;
-              ref.read(isDarkModeProvider.notifier).update((state) => !state); // another alternative
+              ref
+                  .read(isDarkModeProvider.notifier)
+                  .update((state) => !state); // another alternative
             },
           )
         ],

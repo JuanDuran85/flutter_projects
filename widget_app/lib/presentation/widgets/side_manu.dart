@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:widget_app/config/menu/manu_items.dart';
 
 class SideManu extends StatefulWidget {
-
   final GlobalKey<ScaffoldState> scaffoldKey;
 
   const SideManu({super.key, required this.scaffoldKey});
