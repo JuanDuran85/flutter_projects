@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-
+// ignore: depend_on_referenced_packages
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:moviepediaapp/config/router/app_router.dart';
 import 'package:moviepediaapp/config/theme/app_theme.dart';
 
-void main() {
+Future main() async {
+  await dotenv.load(fileName: ".env");
   runApp(const MainApp());
 }
 
