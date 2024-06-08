@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 // ignore: depend_on_referenced_packages
 import 'package:google_fonts/google_fonts.dart';
-import 'package:meals/data/data.dart';
 import 'package:meals/screens/screen.dart';
 
 final theme = ThemeData(
@@ -27,7 +26,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: theme,
-      home: const MealsScreen(title: 'meals', meals: dummyMeals,),
+      home: const CategoriesScreen(),
     );
   }
 }
