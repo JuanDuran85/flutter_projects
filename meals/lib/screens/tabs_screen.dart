@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../models/model.dart';
+import '../widgets/widgets.dart';
 import 'meals_screen.dart';
 import 'categories_screen.dart';
 
@@ -15,6 +16,12 @@ class _TabsScreenState extends State<TabsScreen> {
   int _selectedPageIndex = 0;
   final List<MealModel> _favoritesMeals = [];
 
+  void _showInfoMessage(String message) {
+    ScaffoldMessenger.of(context).clearSnackBars();
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text(message)));
+  }
+
   void _toggleMealFavoriteStatus(MealModel meal) {
     final bool isExisting = _favoritesMeals.contains(meal);
 
@@ -22,10 +29,12 @@ class _TabsScreenState extends State<TabsScreen> {
       setState(() {
         _favoritesMeals.remove(meal);
       });
+      _showInfoMessage('Removed from favorites');
     } else {
       setState(() {
         _favoritesMeals.add(meal);
       });
+      _showInfoMessage('Added to favorites');
     }
   }
 
@@ -53,6 +62,7 @@ class _TabsScreenState extends State<TabsScreen> {
       appBar: AppBar(
         title: Text(activePageTitle),
       ),
+      drawer: const MainDrawer(),
       body: activePage,
       bottomNavigationBar: BottomNavigationBar(
         items: const [
