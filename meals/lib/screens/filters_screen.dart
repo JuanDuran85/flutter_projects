@@ -1,5 +1,14 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/widgets.dart';
+
+enum Filter {
+  glutenFree,
+  lactoseFree,
+  vegan,
+  vegetarian,
+}
+
 class FiltersScreen extends StatefulWidget {
   const FiltersScreen({super.key});
 
@@ -8,7 +17,10 @@ class FiltersScreen extends StatefulWidget {
 }
 
 class _FiltersScreenState extends State<FiltersScreen> {
-  bool _glutenFreeFilterSet = false;
+  bool glutenFreeFilterSet = false;
+  bool lactoseFreeFilterSet = false;
+  bool veganFilterSet = false;
+  bool vegetarianFilterSet = false;
 
   @override
   Widget build(BuildContext context) {
@@ -25,33 +37,30 @@ class _FiltersScreenState extends State<FiltersScreen> {
           }
         },
       ), */
-      body: Column(
-        children: [
-          SwitchListTile(
-            value: _glutenFreeFilterSet,
-            onChanged: (newValue) {
-              setState(() {
-                _glutenFreeFilterSet = newValue;
-              });
-            },
-            title: Text(
-              'Gluten-free',
-              style: Theme.of(context)
-                  .textTheme
-                  .titleLarge!
-                  .copyWith(color: Theme.of(context).colorScheme.onBackground),
-            ),
-            subtitle: Text(
-              'Only include gluten-free meals.',
-              style: Theme.of(context)
-                  .textTheme
-                  .titleLarge!
-                  .copyWith(color: Theme.of(context).colorScheme.onBackground),
-            ),
-            activeColor: Theme.of(context).colorScheme.tertiary,
-            contentPadding: const EdgeInsets.only(left: 34, right: 22),
-          )
-        ],
+      body: PopScope(
+        canPop: false,
+        onPopInvoked: (bool didPop) {
+          if(didPop) return;
+          Navigator.of(context).pop({
+            Filter.glutenFree: glutenFreeFilterSet,
+            Filter.lactoseFree: lactoseFreeFilterSet,
+            Filter.vegan: veganFilterSet,
+            Filter.vegetarian: vegetarianFilterSet,
+          });
+        },
+        child: Column(
+          children: [
+            SwitchListTileCustomWidget(glutenFreeFilterSet, 'Gluten-free',
+                'Only include gluten-free meals'),
+            SwitchListTileCustomWidget(lactoseFreeFilterSet, 'Lactose-free',
+                'Only include lactose-free meals'),
+            SwitchListTileCustomWidget(vegetarianFilterSet, 'Vegetarian',
+                'Only include Vegetarian meals'),
+            SwitchListTileCustomWidget(
+                veganFilterSet, 'Vegan',
+                'Only include Vegan meals'),
+          ],
+        ),
       ),
     );
   }
