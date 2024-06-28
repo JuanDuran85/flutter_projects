@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/widgets.dart';
-
 enum Filter {
   glutenFree,
   lactoseFree,
