@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
 import 'package:animate_do/animate_do.dart';
+// ignore: depend_on_referenced_packages
+import 'package:go_router/go_router.dart';
 import 'package:moviepediaapp/config/helpers/human_formats.dart';
 
 import 'package:moviepediaapp/domain/entities/movie_entities.dart';
@@ -102,7 +104,10 @@ class _Slide extends StatelessWidget {
                       ),
                     );
                   }
-                  return FadeIn(child: child);
+                  return GestureDetector(
+                    onTap: () => context.push('/movie/${movie.id}'),
+                    child: FadeIn(child: child),
+                  );
                 },
               ),
             ),
