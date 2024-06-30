@@ -1,3 +1,18 @@
 {
-  "cSpell.words": ["ARGB", "fastfood", "lato"]
+  "cSpell.words": [
+    "ARGB",
+    "Datasource",
+    "datasources",
+    "dotenv",
+    "fastfood",
+    "imdb",
+    "lato",
+    "moviedb",
+    "moviepediaapp",
+    "Populars",
+    "riverpod",
+    "sublist",
+    "themoviedb",
+    "tmdb"
+  ]
 }
