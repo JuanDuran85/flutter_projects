@@ -1,19 +1,26 @@
 import 'package:flutter/material.dart';
 
-class MovieScreen extends StatefulWidget {
+// ignore: depend_on_referenced_packages
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../providers/movies/movie_info_provider.dart';
+
+class MovieScreen extends ConsumerStatefulWidget {
   static const name = 'movie-screen';
   final String movieId;
 
   const MovieScreen({super.key, required this.movieId});
 
   @override
-  State<MovieScreen> createState() => _MovieScreenState();
+  MovieScreenState createState() => MovieScreenState();
 }
 
-class _MovieScreenState extends State<MovieScreen> {
+class MovieScreenState extends ConsumerState<MovieScreen> {
   @override
   void initState() {
     super.initState();
+
+    ref.read(movieInfoProvider.notifier).loadMovie(widget.movieId);
   }
 
   @override
