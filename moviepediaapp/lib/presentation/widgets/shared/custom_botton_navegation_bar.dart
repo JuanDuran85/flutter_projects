@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class CustomButtonNavegationBar extends StatelessWidget {
-  const CustomButtonNavegationBar({super.key});
+class CustomButtonNavigationBar extends StatelessWidget {
+  const CustomButtonNavigationBar({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -11,7 +11,7 @@ class FullScreenLoader extends StatelessWidget {
       'Loading Upcoming',
       'This is actually loading',
       'Loading Now Playing',
-      'Upss... Its taking longer than expected',
+      'Ups... Its taking longer than expected',
     ];
 
     return Stream.periodic(
