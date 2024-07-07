@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../presentation.dart';
+
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({super.key});
 
@@ -20,7 +22,12 @@ class CustomAppBar extends StatelessWidget {
               Text('MoviePedia', style: themeOfStyle),
               const Spacer(),
               IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    showSearch(
+                      context: context,
+                      delegate: SearchMovieDelegates(),
+                    );
+                  },
                   color: themeOfColors.primary,
                   icon: const Icon(Icons.search_outlined))
             ],
