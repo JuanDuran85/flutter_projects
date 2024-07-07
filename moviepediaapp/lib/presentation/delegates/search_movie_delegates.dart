@@ -3,7 +3,15 @@ import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
 import 'package:animate_do/animate_do.dart';
 
-class SearchMovieDelegates extends SearchDelegate {
+import '../../domain/domain.dart';
+
+typedef SearchMoviesCallback = Future<List<Movie>> Function(String query);
+
+class SearchMovieDelegates extends SearchDelegate<Movie?> {
+  final SearchMoviesCallback searchMovie;
+
+  SearchMovieDelegates({required this.searchMovie});
+
   @override
   String get searchFieldLabel => 'Search movie';
 
@@ -40,6 +48,19 @@ class SearchMovieDelegates extends SearchDelegate {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    return const Text('buildSuggestions');
+    return FutureBuilder(
+        future: searchMovie(query),
+        builder: (context, snapshot) {
+          final movies = snapshot.data ?? [];
+          return ListView.builder(
+              itemCount: movies.length,
+              itemBuilder: (context, index) {
+                final movie = movies[index];
+                return ListTile(
+                  title: Text(movie.title),
+                  onTap: () => close(context, movie),
+                );
+              });
+        });
   }
 }
