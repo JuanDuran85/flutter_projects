@@ -1,20 +1,36 @@
 import 'package:flutter/material.dart';
 
+// ignore: depend_on_referenced_packages
+import 'package:animate_do/animate_do.dart';
+
 class SearchMovieDelegates extends SearchDelegate {
   @override
   String get searchFieldLabel => 'Search movie';
 
-
   @override
   List<Widget>? buildActions(BuildContext context) {
     return [
-      const Text('buildActions'),
+      FadeIn(
+        animate: query.isNotEmpty,
+        duration: const Duration(milliseconds: 245),
+        child: IconButton(
+          onPressed: () => query = '',
+          icon: const Icon(
+            Icons.clear,
+          ),
+        ),
+      ),
     ];
   }
 
   @override
   Widget? buildLeading(BuildContext context) {
-    return const Text('buildLeading');
+    return IconButton(
+      onPressed: () => close(context, null),
+      icon: const Icon(
+        Icons.arrow_back_rounded,
+      ),
+    );
   }
 
   @override
