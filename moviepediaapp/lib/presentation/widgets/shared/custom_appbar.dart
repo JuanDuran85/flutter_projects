@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+// ignore: depend_on_referenced_packages
+import 'package:go_router/go_router.dart';
+
+import '../../../domain/domain.dart';
 import '../../../infrastructure/infrastructure.dart';
 import '../../presentation.dart';
 
@@ -28,11 +32,14 @@ class CustomAppBar extends ConsumerWidget {
                     final MovieRepositoryImpl movieRepository =
                         ref.read(movieRepositoryProvider);
 
-                    showSearch(
+                    showSearch<Movie?>(
                       context: context,
                       delegate: SearchMovieDelegates(
                           searchMovie: movieRepository.searchMovies),
-                    );
+                    ).then((valueMovie) {
+                      if (valueMovie == null) return;
+                      context.push('/movie/${valueMovie.id}');
+                    });
                   },
                   color: themeOfColors.primary,
                   icon: const Icon(Icons.search_outlined))
