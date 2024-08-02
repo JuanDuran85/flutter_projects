@@ -5,7 +5,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../domain/domain.dart';
-import '../../../infrastructure/infrastructure.dart';
 import '../../presentation.dart';
 
 class CustomAppBar extends ConsumerWidget {
