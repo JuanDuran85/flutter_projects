@@ -2,7 +2,7 @@
 import 'package:go_router/go_router.dart';
 
 import '../../presentation/presentation.dart';
-
+// this solution is working but it could not preserve the state of the app when the user changes the route with the back button views
 final appRouter = GoRouter(
   initialLocation: '/',
   routes: [
