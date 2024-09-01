@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// ignore: depend_on_referenced_packages
 import 'package:video_player/video_player.dart';
 import 'package:video_tok/presentation/widgets/video/video_background.dart';
 

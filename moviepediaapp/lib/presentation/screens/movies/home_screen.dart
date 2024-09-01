@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../widgets/widgets.dart';
+import '../../presentation.dart';
 
 class HomeScreen extends StatelessWidget {
   static const name = 'home-screen';
@@ -13,11 +13,9 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: childView,
-      ),
-      bottomNavigationBar: const CustomButtonNavigationBar(),
+    return const Scaffold(
+      body: FavoritesView(),
+      bottomNavigationBar: CustomButtonNavigationBar(),
     );
   }
 }

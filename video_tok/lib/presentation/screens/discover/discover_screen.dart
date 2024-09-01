@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+// ignore: depend_on_referenced_packages
 import 'package:provider/provider.dart';
+
 import 'package:video_tok/presentation/providers/discover_provider.dart';
 import 'package:video_tok/presentation/widgets/shared/video_scrollable_view.dart';
 
