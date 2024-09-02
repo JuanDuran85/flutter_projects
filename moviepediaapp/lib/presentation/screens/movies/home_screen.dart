@@ -11,13 +11,11 @@ class HomeScreen extends StatelessWidget {
     required this.pageIndex,
   });
 
-
-  final viewRoutes = const <Widget> [
+  final viewRoutes = const <Widget>[
     HomeView(),
     SizedBox(),
     FavoritesView(),
   ];
-
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +24,9 @@ class HomeScreen extends StatelessWidget {
         index: pageIndex,
         children: viewRoutes,
       ),
-      bottomNavigationBar: const CustomButtonNavigationBar(),
+      bottomNavigationBar: CustomButtonNavigationBar(
+        selectedIndex: pageIndex,
+      ),
     );
   }
 }
