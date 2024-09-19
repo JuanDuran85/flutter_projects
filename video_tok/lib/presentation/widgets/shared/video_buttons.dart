@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// ignore: depend_on_referenced_packages
 import 'package:animate_do/animate_do.dart';
 
 import 'package:video_tok/config/helpers/human_formats.dart';

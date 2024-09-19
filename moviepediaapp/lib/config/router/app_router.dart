@@ -4,43 +4,21 @@ import 'package:go_router/go_router.dart';
 import '../../presentation/presentation.dart';
 
 final appRouter = GoRouter(
-  initialLocation: '/',
+  initialLocation: '/home/0',
   routes: [
-    ShellRoute(
-      routes: [
-        GoRoute(
-            path: '/',
-            builder: (context, state) {
-              return const HomeView();
-            },
-            routes: [
-              GoRoute(
-                path: 'movie/:id',
-                name: MovieScreen.name,
-                builder: (context, state) => MovieScreen(
-                  movieId: state.pathParameters['id'] ?? 'no-id',
-                ),
-              ),
-            ]),
-        GoRoute(
-            path: '/favorites',
-            builder: (context, state) {
-              return const FavoritesView();
-            })
-      ],
-      builder: (context, state, child) {
-        return HomeScreen(childView: child);
-      },
-    ),
-  ],
-);
-// father / son route
-/* GoRoute(
-      path: '/',
+    GoRoute(
+      path: '/home/:page',
       name: HomeScreen.name,
-      builder: (context, state) => const HomeScreen(
-            childView: FavoritesView(),
-          ),
+      builder: (context, state) {
+        final int pageIndex =
+            int.parse((state.pathParameters['page'] ?? 0).toString());
+        if (pageIndex < 0 || pageIndex > 2) {
+          return const HomeScreen(pageIndex: 0);
+        }
+        return HomeScreen(
+          pageIndex: pageIndex,
+        );
+      },
       routes: [
         GoRoute(
           path: 'movie/:id',
@@ -49,4 +27,11 @@ final appRouter = GoRouter(
             movieId: state.pathParameters['id'] ?? 'no-id',
           ),
         ),
-      ]), */
+      ],
+    ),
+    GoRoute(
+      path: '/',
+      redirect: (_, __) => '/home/0',
+    ),
+  ],
+);
