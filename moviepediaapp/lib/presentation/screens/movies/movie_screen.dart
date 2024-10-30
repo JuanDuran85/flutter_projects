@@ -5,7 +5,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 // ignore: depend_on_referenced_packages
 import 'package:animate_do/animate_do.dart';
 
-
 import '../../../domain/domain.dart';
 import '../../providers/providers.dart';
 
@@ -201,6 +200,13 @@ class _CustomSliverAppBar extends StatelessWidget {
       backgroundColor: Colors.black,
       expandedHeight: size.height * 0.7,
       foregroundColor: Colors.white,
+      actions: [
+        IconButton(
+          onPressed: () {},
+          icon: const Icon(Icons.favorite_border),
+          //icon: const Icon(Icons.favorite_rounded),
+        )
+      ],
       flexibleSpace: FlexibleSpaceBar(
         titlePadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
 /*         title: Text(
@@ -220,36 +226,62 @@ class _CustomSliverAppBar extends StatelessWidget {
                 },
               ),
             ),
-            const SizedBox.expand(
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    stops: [0.7, 1.0],
-                    colors: [
-                      Colors.transparent,
-                      Colors.black87,
-                    ],
-                  ),
-                ),
-              ),
+            const _CustomGradiente(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              stops: [0.8, 1.0],
+              colors: [
+                Colors.transparent,
+                Colors.black54,
+              ],
             ),
-            const SizedBox.expand(
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    stops: [0.0, 0.4],
-                    colors: [
-                      Colors.black87,
-                      Colors.transparent,
-                    ],
-                  ),
-                ),
-              ),
+            const _CustomGradiente(
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+              stops: [0.0, 0.2],
+              colors: [
+                Colors.black54,
+                Colors.transparent,
+              ],
+            ),
+            const _CustomGradiente(
+              begin: Alignment.topLeft,
+              stops: [0.0, 0.4],
+              colors: [
+                Colors.black87,
+                Colors.transparent,
+              ],
             )
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class _CustomGradiente extends StatelessWidget {
+  final Alignment begin;
+  final Alignment end;
+  final List<double> stops;
+  final List<Color> colors;
+
+  const _CustomGradiente(
+      {this.begin = Alignment.centerLeft,
+      this.end = Alignment.centerRight,
+      required this.stops,
+      required this.colors});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox.expand(
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: begin,
+            end: end,
+            stops: stops,
+            colors: colors,
+          ),
         ),
       ),
     );
