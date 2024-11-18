@@ -1,22 +1,22 @@
 import '../../domain/domain.dart';
 
 class LocalStorageRepositoryImpl extends LocalStorageRepository {
+  final LocalStorageDatasource datasource;
+
+  LocalStorageRepositoryImpl({required this.datasource});
+
   @override
   Future<bool> isMovieFavorited(int movieId) {
-    // TODO: implement isMovieFavorited
-    throw UnimplementedError();
+    return datasource.isMovieFavorited(movieId);
   }
 
   @override
   Future<List<Movie>> loadMovies({int limit = 10, int offset = 0}) {
-    // TODO: implement loadMovies
-    throw UnimplementedError();
+    return datasource.loadMovies(limit: limit, offset: offset);
   }
 
   @override
   Future<void> toggleFavorite(Movie movie) {
-    // TODO: implement toggleFavorite
-    throw UnimplementedError();
+    return datasource.toggleFavorite(movie);
   }
-
 }
