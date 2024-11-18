@@ -5,7 +5,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 // ignore: depend_on_referenced_packages
 import 'package:animate_do/animate_do.dart';
 
-
 import '../../../domain/domain.dart';
 import '../../providers/providers.dart';
 
@@ -187,20 +186,28 @@ class _ActorsByMovie extends ConsumerWidget {
   }
 }
 
-class _CustomSliverAppBar extends StatelessWidget {
+class _CustomSliverAppBar extends ConsumerWidget {
   final Movie movie;
   const _CustomSliverAppBar({
     required this.movie,
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final size = MediaQuery.of(context).size;
 
     return SliverAppBar(
       backgroundColor: Colors.black,
       expandedHeight: size.height * 0.7,
       foregroundColor: Colors.white,
+      actions: [
+        IconButton(
+          onPressed: () {
+            ref.watch(localStoreRepositoryProvider).toggleFavorite(movie);
+          },
+          icon: const Icon(Icons.favorite_border),
+        )
+      ],
       flexibleSpace: FlexibleSpaceBar(
         titlePadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
 /*         title: Text(
