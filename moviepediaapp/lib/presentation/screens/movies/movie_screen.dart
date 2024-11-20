@@ -7,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:animate_do/animate_do.dart';
 
 import '../../../domain/domain.dart';
+import '../../../infrastructure/infrastructure.dart';
 import '../../providers/providers.dart';
 
 class MovieScreen extends ConsumerStatefulWidget {
@@ -187,6 +188,13 @@ class _ActorsByMovie extends ConsumerWidget {
   }
 }
 
+final AutoDisposeFutureProviderFamily<bool, int> isFavoriteProvider =
+    FutureProvider.family.autoDispose((ref, int movieId) {
+  final LocalStorageRepositoryImpl localStorageRepository =
+      ref.watch(localStoreRepositoryProvider);
+  return localStorageRepository.isMovieFavorited(movieId);
+});
+
 class _CustomSliverAppBar extends ConsumerWidget {
   final Movie movie;
   const _CustomSliverAppBar({
@@ -195,8 +203,9 @@ class _CustomSliverAppBar extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final size = MediaQuery.of(context).size;
-
+    final Size size = MediaQuery.of(context).size;
+    final AsyncValue<bool> isFavoriteFuture =
+        ref.watch(isFavoriteProvider(movie.id));
     return SliverAppBar(
       backgroundColor: Colors.black,
       expandedHeight: size.height * 0.7,
@@ -205,12 +214,17 @@ class _CustomSliverAppBar extends ConsumerWidget {
         IconButton(
           onPressed: () {
             ref.watch(localStoreRepositoryProvider).toggleFavorite(movie);
+            ref.invalidate(isFavoriteProvider(movie.id));
           },
-          icon: const Icon(Icons.favorite_border),
-          // icon: const Icon(
-          //   Icons.favorite_rounded,
-          //   color: Colors.red,
-          // ),
+          icon: isFavoriteFuture.when(
+            data: (isFavorite) => isFavorite
+                ? const Icon(Icons.favorite_rounded, color: Colors.red)
+                : const Icon(Icons.favorite_border),
+            error: (_, __) => throw UnimplementedError(),
+            loading: () => const CircularProgressIndicator(
+              strokeWidth: 2,
+            ),
+          ),
         )
       ],
       flexibleSpace: FlexibleSpaceBar(
