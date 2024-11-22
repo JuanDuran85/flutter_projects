@@ -5,7 +5,8 @@ import 'package:moviepediaapp/presentation/providers/storage/local_storage_provi
 import '../../../domain/domain.dart';
 import '../../../infrastructure/infrastructure.dart';
 
-final favoriteMoviesProvider =
+final StateNotifierProvider<StorageMoviesNotifier, Map<int, Movie>>
+    favoriteMoviesProvider =
     StateNotifierProvider<StorageMoviesNotifier, Map<int, Movie>>((ref) {
   final LocalStorageRepositoryImpl localStorageRepository =
       ref.watch(localStoreRepositoryProvider);
