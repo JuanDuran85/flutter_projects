@@ -1,21 +1,36 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 // ignore: depend_on_referenced_packages
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:moviepediaapp/presentation/providers/storage/local_storage_provider.dart';
 
 import '../../../domain/domain.dart';
+import '../../../infrastructure/infrastructure.dart';
 
-// final favoriteMoviesProvider = StateNotifierProvider((ref) {
-//   return;
-// });
+final favoriteMoviesProvider =
+    StateNotifierProvider<StorageMoviesNotifier, Map<int, Movie>>((ref) {
+  final LocalStorageRepositoryImpl localStorageRepository =
+      ref.watch(localStoreRepositoryProvider);
+  return StorageMoviesNotifier(localStorageRepository: localStorageRepository);
+});
 
-class StorageMoviesNotifies extends StateNotifier<Map<int, Movie>> {
+class StorageMoviesNotifier extends StateNotifier<Map<int, Movie>> {
   int page = 0;
   final LocalStorageRepository localStorageRepository;
 
-  StorageMoviesNotifies({
+  StorageMoviesNotifier({
     required this.localStorageRepository,
   }) : super(const {});
 
+  Future<List<Movie>> loadNextPage() async {
+    final List<Movie> movies =
+        await localStorageRepository.loadMovies(limit: 20, offset: page * 10);
+    page++;
+    final Map<int, Movie> tempMovieMap = <int, Movie>{};
+    for (var movie in movies) {
+      tempMovieMap[movie.id] = movie;
+    }
 
-  
+    state = {...state, ...tempMovieMap};
+
+    return movies;
+  }
 }
