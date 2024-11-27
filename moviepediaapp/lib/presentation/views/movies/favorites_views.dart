@@ -13,7 +13,6 @@ class FavoritesView extends ConsumerStatefulWidget {
 }
 
 class FavoritesViewState extends ConsumerState<FavoritesView> {
-
   @override
   void initState() {
     super.initState();
@@ -21,24 +20,13 @@ class FavoritesViewState extends ConsumerState<FavoritesView> {
     ref.read(favoriteMoviesProvider.notifier).loadNextPage();
   }
 
-
   @override
   Widget build(BuildContext context) {
-
-    final List<Movie> favoritesMovies = ref.watch(favoriteMoviesProvider).values.toList();
+    final List<Movie> favoritesMovies =
+        ref.watch(favoriteMoviesProvider).values.toList();
     return Scaffold(
-      body: ListView.builder(
-        itemCount: favoritesMovies.length,
-        itemBuilder: (context, index) {
-
-          final Movie movie = favoritesMovies[index];
-
-          return ListTile(
-            title: Text(movie.title),
-            subtitle: Text(movie.overview),
-          );
-        },
-      ),
-    );
+        body: MovieMasonry(
+      movies: favoritesMovies,
+    ));
   }
 }
