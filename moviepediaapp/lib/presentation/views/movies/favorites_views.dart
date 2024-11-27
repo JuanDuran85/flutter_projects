@@ -25,14 +25,17 @@ class FavoritesViewState extends ConsumerState<FavoritesView> {
   @override
   Widget build(BuildContext context) {
 
-    final Map<int, Movie> favoritesMovies = ref.watch(favoriteMoviesProvider);
+    final List<Movie> favoritesMovies = ref.watch(favoriteMoviesProvider).values.toList();
     return Scaffold(
       body: ListView.builder(
         itemCount: favoritesMovies.length,
         itemBuilder: (context, index) {
+
+          final Movie movie = favoritesMovies[index];
+
           return ListTile(
-            title: Text('Movie $index'),
-            subtitle: Text(favoritesMovies.values.toList()[index].title),
+            title: Text(movie.title),
+            subtitle: Text(movie.overview),
           );
         },
       ),
