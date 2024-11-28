@@ -15,6 +15,8 @@ final StateNotifierProvider<StorageMoviesNotifier, Map<int, Movie>>
 
 class StorageMoviesNotifier extends StateNotifier<Map<int, Movie>> {
   int page = 0;
+  bool isLoading = false;
+  final int limit = 20;
   final LocalStorageRepository localStorageRepository;
 
   StorageMoviesNotifier({
@@ -22,8 +24,10 @@ class StorageMoviesNotifier extends StateNotifier<Map<int, Movie>> {
   }) : super(const {});
 
   Future<List<Movie>> loadNextPage() async {
+    if(isLoading) return [];
+    isLoading = true;
     final List<Movie> movies =
-        await localStorageRepository.loadMovies(limit: 1000, offset: page * 10);
+        await localStorageRepository.loadMovies(limit: limit, offset: page * 10);
     page++;
     final Map<int, Movie> tempMovieMap = <int, Movie>{};
     for (var movie in movies) {
@@ -31,7 +35,8 @@ class StorageMoviesNotifier extends StateNotifier<Map<int, Movie>> {
     }
 
     state = {...state, ...tempMovieMap};
-
+    await Future.delayed(const Duration(milliseconds: 200));
+    isLoading = false;
     return movies;
   }
 }
