@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'presentation/screens/home_screen.dart';
+
 void main() {
   runApp(const MainApp());
 }
@@ -13,7 +15,9 @@ class MainApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
-        textTheme: const TextTheme(bodyMedium: TextStyle(color: Colors.white),),
+        textTheme: const TextTheme(
+          bodyMedium: TextStyle(color: Colors.white),
+        ),
       ),
       home: const HomeScreen(),
     );
