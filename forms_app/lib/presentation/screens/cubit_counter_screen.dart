@@ -1,7 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../presentation.dart';
 
 class CubitCounterScreen extends StatelessWidget {
   const CubitCounterScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (_) => CounterCubit(),
+      child: const _CubitCounterView(),
+    );
+  }
+}
+
+class _CubitCounterView extends StatelessWidget {
+  const _CubitCounterView();
 
   @override
   Widget build(BuildContext context) {
